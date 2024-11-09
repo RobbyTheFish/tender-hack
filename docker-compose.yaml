@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  api:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+
+  #telegram_bot:
+  # build:
+  #   context: .
+  #    dockerfile: tg/Dockerfile
+  #  container_name: telegram_bot
+  #  ports:
+  #    - "80:80"
+  #  environment:
+  #    - API_URL=http://api:8000
+  #    - REDIS_HOST=redis
+  #    - REDIS_PORT=6379
+  #    - TELEGRAM_TOKEN=your_telegram_bot_token
+  #  depends_on:
+  #    - api
+  #    - redis
+
+volumes:
+  redis_data:
