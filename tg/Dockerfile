@@ -10,14 +10,14 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /bot
 
 # Копируем файлы зависимостей
-COPY telegram_bot/requirements.txt .
+COPY tg/requirements.txt .
 
 # Устанавливаем зависимости
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Копируем исходный код бота
-COPY telegram_bot/ .
+COPY tg/ .
 
 # Открываем порт
 EXPOSE 80

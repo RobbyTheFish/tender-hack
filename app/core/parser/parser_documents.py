@@ -15,11 +15,6 @@ class DocumentParser(ABC, metaclass=DocumentParserMeta):
     def parse(self, file_path):
         pass
 
-
-import os
-import pdfplumber
-from typing import List, Any
-
 class PDFParser(DocumentParser):
     def parse(self, file_path: str) -> str:
         """
