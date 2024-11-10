@@ -14,6 +14,7 @@ COPY app/requirements.txt .
 # Устанавливаем зависимости
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install antiword
 
 # Копируем исходный код приложения
 COPY app/ .
